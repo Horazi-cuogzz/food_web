@@ -1,0 +1,19 @@
+/* App.css — reset old Bootstrap overrides, dark theme takes over via index.css */
+* {
+  box-sizing: border-box;
+}
+
+/* Remove old Bootstrap-style overrides */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Ensure full-height dark layout */
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #f2f4f3;
+}

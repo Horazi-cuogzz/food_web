@@ -1,0 +1,309 @@
+/* ── Food Form Modern Light Animations ── */
+
+.ff-form {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.ff-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+}
+
+.ff-col {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  animation: slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.ff-col-left {
+  flex: 0 0 320px;
+  max-width: 320px;
+}
+
+.ff-col-right {
+  flex: 1;
+  min-width: 320px;
+}
+
+/* Rows & Grid */
+.ff-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.ff-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+}
+
+.ff-w100 { width: 100%; }
+.ff-w50  { width: calc(50% - 8px); }
+.ff-w33  { width: calc(33.333% - 10.66px); }
+
+/* Labels */
+.ff-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #495057;
+  letter-spacing: 0.02em;
+}
+
+/* Inputs & Selects */
+.ff-input, .ff-select, .ff-textarea {
+  width: 100%;
+  padding: 12px 16px;
+  background: #f8f9fa;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: #1a1d20;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.02) inset;
+  outline: none;
+}
+
+.ff-input::placeholder, .ff-textarea::placeholder {
+  color: #adb5bd;
+}
+
+.ff-input:focus, .ff-select:focus, .ff-textarea:focus {
+  background: #ffffff;
+  border-color: #10b981;
+  box-shadow: 0 0 0 4px rgba(16,185,129,0.15), 0 2px 10px rgba(0,0,0,0.05);
+  transform: translateY(-1px);
+}
+
+.ff-input.error, .ff-select.error {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 4px rgba(239,68,68,0.1);
+}
+
+.ff-error-text {
+  font-size: 11px;
+  color: #ef4444;
+  font-weight: 500;
+  animation: slide-down 0.3s ease;
+  position: absolute;
+  bottom: -18px;
+  left: 4px;
+}
+
+/* Input Icons */
+.ff-input-icon {
+  position: relative;
+  width: 100%;
+}
+.ff-icon-left {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #868e96;
+  font-weight: 600;
+  pointer-events: none;
+}
+.ff-input.has-icon {
+  padding-left: 36px;
+}
+
+/* Custom Select */
+.ff-select-wrap {
+  position: relative;
+}
+.ff-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23868e96' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+  cursor: pointer;
+}
+
+/* Image Upload Area */
+.ff-upload-area {
+  width: 100%;
+  height: 240px;
+  background: #f8f9fa;
+  border: 2px dashed rgba(0,0,0,0.15);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+.ff-upload-area:hover, .ff-upload-area.dragging {
+  background: rgba(16,185,129,0.05);
+  border-color: #10b981;
+  border-style: solid;
+}
+
+.ff-upload-area.has-error {
+  border-color: #ef4444;
+  background: rgba(239,68,68,0.05);
+}
+
+.ff-file-hidden {
+  display: none;
+}
+
+.ff-upload-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+  pointer-events: none;
+}
+
+.ff-upload-icon {
+  width: 56px;
+  height: 56px;
+  background: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #10b981;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  margin-bottom: 8px;
+  transition: transform 0.3s ease;
+}
+.ff-upload-area:hover .ff-upload-icon {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(16,185,129,0.2);
+}
+
+.ff-upload-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #495057;
+  margin: 0;
+}
+.ff-upload-sub {
+  font-size: 12px;
+  color: #868e96;
+  margin: 0;
+}
+
+.ff-image-preview {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.ff-image-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.ff-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  backdrop-filter: blur(2px);
+}
+.ff-upload-area:hover .ff-image-overlay {
+  opacity: 1;
+}
+.ff-image-overlay span {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.ff-or-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #adb5bd;
+  font-size: 11px;
+  font-weight: 600;
+  margin: 8px 0;
+}
+.ff-or-divider::before, .ff-or-divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+.ff-or-divider span {
+  padding: 0 12px;
+}
+
+/* Footer Submit */
+.ff-footer {
+  margin-top: 16px;
+  display: flex;
+  justify-content: flex-end;
+  border-top: 1px solid rgba(0,0,0,0.06);
+  padding-top: 24px;
+  animation: slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.ff-submit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 32px;
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 6px 20px rgba(16,185,129,0.3);
+}
+
+.ff-submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(16,185,129,0.4);
+  background: linear-gradient(135deg, #34d399, #10b981);
+}
+.ff-submit-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 10px rgba(16,185,129,0.3);
+}
+
+/* Animations */
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-down {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .ff-col-left {
+    flex: 100%;
+    max-width: 100%;
+  }
+}
+@media (max-width: 640px) {
+  .ff-w50, .ff-w33 {
+    width: 100%;
+  }
+}

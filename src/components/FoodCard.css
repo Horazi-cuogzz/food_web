@@ -1,0 +1,231 @@
+/* FoodCard Modern Light */
+.fc-card {
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: transform 0.35s cubic-bezier(.22,.68,0,1.2), box-shadow 0.35s ease, border-color 0.3s;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  will-change: transform;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+}
+.fc-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.08), 0 0 20px rgba(16,185,129,0.08);
+  border-color: rgba(16,185,129,0.3);
+}
+.fc-card--expired {
+  border-color: rgba(239,68,68,0.3);
+}
+.fc-card--expired:hover {
+  box-shadow: 0 15px 40px rgba(0,0,0,0.08), 0 0 20px rgba(239,68,68,0.08);
+  border-color: rgba(239,68,68,0.4);
+}
+
+/* Image */
+.fc-img-wrap {
+  position: relative;
+  height: 210px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.fc-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+.fc-card:hover .fc-img { transform: scale(1.06); }
+
+.fc-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.2) 100%);
+  pointer-events: none;
+}
+
+/* Badges on image */
+.fc-category {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 4px 10px;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #1a1d20;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(0,0,0,0.05);
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.fc-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 4px 10px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.fc-badge--green {
+  background: rgba(16,185,129,0.9);
+  color: #fff;
+  border: 1px solid rgba(16,185,129,1);
+}
+.fc-badge--yellow {
+  background: rgba(245,158,11,0.9);
+  color: #fff;
+  border: 1px solid rgba(245,158,11,1);
+}
+.fc-badge--red {
+  background: rgba(239,68,68,0.9);
+  color: #fff;
+  border: 1px solid rgba(239,68,68,1);
+}
+
+/* Body */
+.fc-body {
+  padding: 16px 18px 18px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 12px;
+}
+.fc-top {}
+.fc-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a1d20;
+  margin: 0 0 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.fc-brand {
+  font-size: 12px;
+  color: #64748b;
+  margin: 0;
+  letter-spacing: 0.03em;
+}
+
+/* Meta */
+.fc-meta {
+  display: flex;
+  gap: 14px;
+}
+.fc-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11.5px;
+  color: #64748b;
+}
+.fc-meta-item svg { stroke: #94a3b8; flex-shrink: 0; }
+
+/* Divider */
+.fc-divider {
+  height: 1px;
+  background: rgba(0,0,0,0.06);
+  margin: 0 -18px;
+}
+
+/* Footer */
+.fc-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+}
+.fc-price-wrap { display: flex; flex-direction: column; gap: 4px; }
+.fc-price {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #059669;
+  margin: 0;
+  line-height: 1;
+}
+.fc-price span { font-size: 12px; margin-left: 2px; opacity: 0.7; }
+
+.fc-stock-badge {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 12px;
+}
+.fc-stock--in {
+  background: rgba(16,185,129,0.1);
+  color: #059669;
+  border: 1px solid rgba(16,185,129,0.25);
+}
+.fc-stock--out {
+  background: rgba(239,68,68,0.1);
+  color: #ef4444;
+  border: 1px solid rgba(239,68,68,0.25);
+}
+
+/* Icon action buttons */
+.fc-actions {
+  display: flex;
+  gap: 6px;
+}
+.fc-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.2s, background 0.2s, border-color 0.2s, box-shadow 0.2s, color 0.2s;
+}
+.fc-btn:hover { transform: translateY(-1px); }
+
+.fc-btn--primary {
+  background: rgba(16,185,129,0.1);
+  border-color: rgba(16,185,129,0.25);
+  color: #059669;
+}
+.fc-btn--primary svg { stroke: #059669; }
+.fc-btn--primary:hover {
+  background: rgba(16,185,129,0.15);
+  box-shadow: 0 4px 10px rgba(16,185,129,0.15);
+}
+
+.fc-btn--ghost {
+  background: rgba(0,0,0,0.03);
+  border-color: rgba(0,0,0,0.08);
+  color: #64748b;
+}
+.fc-btn--ghost svg { stroke: #64748b; }
+.fc-btn--ghost:hover {
+  background: rgba(0,0,0,0.08);
+  color: #1a1d20;
+}
+.fc-btn--ghost:hover svg { stroke: #1a1d20; }
+
+.fc-btn--danger {
+  background: rgba(239,68,68,0.08);
+  border-color: rgba(239,68,68,0.2);
+  color: #ef4444;
+}
+.fc-btn--danger svg { stroke: #ef4444; }
+.fc-btn--danger:hover {
+  background: rgba(239,68,68,0.15);
+  box-shadow: 0 4px 10px rgba(239,68,68,0.15);
+}

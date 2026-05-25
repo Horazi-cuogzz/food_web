@@ -1,0 +1,423 @@
+/* =========================================
+   CARD DECK GALLERY — Modern Light Cinematic
+   ========================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+/* ── Wrapper ── */
+.cdg-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 560px;
+  background: radial-gradient(ellipse 120% 80% at 50% 0%, #ffffff 0%, #f1f5f9 55%, #e2e8f0 100%);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  perspective: 1200px;
+  cursor: crosshair;
+}
+
+/* ── Ambient orbs ── */
+.cdg-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  animation: orb-drift 18s ease-in-out infinite alternate;
+}
+.cdg-orb-1 {
+  width: 500px; height: 500px;
+  top: -160px; left: -100px;
+  background: radial-gradient(circle, rgba(16,185,129,0.15) 0%, transparent 70%);
+  animation-delay: 0s;
+}
+.cdg-orb-2 {
+  width: 400px; height: 400px;
+  top: 60px; right: -80px;
+  background: radial-gradient(circle, rgba(59,130,246,0.12) 0%, transparent 70%);
+  animation-delay: -6s;
+}
+.cdg-orb-3 {
+  width: 350px; height: 350px;
+  bottom: -100px; left: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, rgba(245,158,11,0.15) 0%, transparent 70%);
+  animation-delay: -12s;
+}
+@keyframes orb-drift {
+  0%   { transform: translate(0,0) scale(1); }
+  50%  { transform: translate(30px,-20px) scale(1.08); }
+  100% { transform: translate(-20px,25px) scale(0.95); }
+}
+
+/* ── Dot grid ── */
+.cdg-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, rgba(0,0,0,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 50%, black 30%, transparent 100%);
+}
+
+/* ── 3D Scene ── */
+.cdg-scene {
+  position: relative;
+  width: 340px;
+  height: 440px;
+  transform-style: preserve-3d;
+  margin: 40px auto 24px;
+}
+
+/* ── Base card ── */
+.cdg-card {
+  position: absolute;
+  width: 260px;
+  height: 360px;
+  border-radius: 22px;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transform:
+    translate3d(var(--tx), var(--ty), var(--tz))
+    rotateX(var(--rx))
+    rotateY(var(--ry))
+    rotateZ(var(--rz))
+    scale(var(--sc));
+  box-shadow:
+    0 8px 30px rgba(0,0,0,0.1),
+    inset 0 1px 0 rgba(255,255,255,0.8);
+  border: 1px solid rgba(0,0,0,0.05);
+  cursor: pointer;
+  will-change: transform;
+  transition: box-shadow 0.4s ease;
+  left: 50%;
+  top: 50%;
+  margin-left: -130px;
+  margin-top: -180px;
+  backdrop-filter: blur(5px);
+  background: #ffffff;
+}
+
+/* ── Hero card (frontmost) ── */
+.cdg-card--hero {
+  box-shadow:
+    0 10px 40px rgba(0,0,0,0.15),
+    0 20px 60px rgba(0,0,0,0.1),
+    inset 0 1px 0 rgba(255,255,255,1);
+  border: 1px solid rgba(0,0,0,0.08);
+  backdrop-filter: blur(0px);
+}
+
+.cdg-card--hov {
+  box-shadow:
+    0 0 30px var(--glow),
+    0 15px 50px rgba(0,0,0,0.2),
+    inset 0 1px 0 rgba(255,255,255,1);
+  z-index: 20 !important;
+}
+
+/* ── Card image ── */
+.cdg-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+  transition: transform 0.6s ease, filter 0.4s ease;
+}
+.cdg-card--hov .cdg-card__img {
+  transform: scale(1.06);
+}
+
+/* ── Glass overlay ── */
+.cdg-card__glass {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0.4) 0%,
+    transparent 40%,
+    rgba(0,0,0,0.05) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ── Glow ring ── */
+.cdg-card__glow-ring {
+  position: absolute;
+  inset: -1px;
+  border-radius: 23px;
+  border: 2px solid var(--accent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 4;
+  pointer-events: none;
+  box-shadow: inset 0 0 15px var(--glow), 0 0 15px var(--glow);
+}
+.cdg-card--hov .cdg-card__glow-ring {
+  opacity: 0.8;
+}
+
+/* ── Shine sweep ── */
+.cdg-card__shine {
+  position: absolute;
+  top: -100%;
+  left: -60%;
+  width: 60%;
+  height: 300%;
+  background: linear-gradient(
+    105deg,
+    transparent 0%,
+    rgba(255,255,255,0.2) 45%,
+    rgba(255,255,255,0.4) 50%,
+    rgba(255,255,255,0.2) 55%,
+    transparent 100%
+  );
+  transform: skewX(-10deg);
+  z-index: 3;
+  pointer-events: none;
+  animation: shine-sweep 5s ease-in-out infinite;
+}
+@keyframes shine-sweep {
+  0%   { left: -60%; }
+  30%  { left: 130%; }
+  100% { left: 130%; }
+}
+
+/* ── Label ── */
+.cdg-card__label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 16px 18px;
+  background: linear-gradient(to top, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.8) 50%, transparent 100%);
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  backdrop-filter: blur(2px);
+}
+.cdg-card__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+  flex-shrink: 0;
+  animation: dot-pulse 2s ease-in-out infinite;
+}
+@keyframes dot-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.6; transform: scale(0.8); }
+}
+.cdg-card__name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a1d20;
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+.cdg-card__sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  color: #64748b;
+  margin: 2px 0 0;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ── Corner accents ── */
+.cdg-card__corner-tl,
+.cdg-card__corner-br {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-color: var(--accent);
+  border-style: solid;
+  border-width: 0;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 6;
+  pointer-events: none;
+}
+.cdg-card__corner-tl {
+  top: 10px; left: 10px;
+  border-top-width: 3px;
+  border-left-width: 3px;
+  border-radius: 4px 0 0 0;
+}
+.cdg-card__corner-br {
+  bottom: 10px; right: 10px;
+  border-bottom-width: 3px;
+  border-right-width: 3px;
+  border-radius: 0 0 4px 0;
+}
+.cdg-card--hov .cdg-card__corner-tl,
+.cdg-card--hov .cdg-card__corner-br {
+  opacity: 1;
+}
+
+/* ── Background card blur ── */
+.cdg-scene .cdg-card:not(.cdg-card--hero) .cdg-card__img {
+  filter: blur(0.5px) opacity(0.85);
+}
+.cdg-scene .cdg-card:nth-child(1) .cdg-card__img,
+.cdg-scene .cdg-card:nth-child(2) .cdg-card__img {
+  filter: blur(2px) opacity(0.7);
+}
+.cdg-scene .cdg-card:nth-child(3) .cdg-card__img,
+.cdg-scene .cdg-card:nth-child(4) .cdg-card__img {
+  filter: blur(1px) opacity(0.75);
+}
+
+/* ── Float animations ── */
+.float-a {
+  animation: float-a 9s ease-in-out infinite;
+}
+.float-b {
+  animation: float-b 11s ease-in-out infinite;
+}
+.float-c {
+  animation: float-c 13s ease-in-out infinite;
+}
+.float-hero {
+  animation: float-hero 8s ease-in-out infinite;
+}
+
+@keyframes float-a {
+  0%, 100% {
+    transform:
+      translate3d(var(--tx), var(--ty), var(--tz))
+      rotateX(var(--rx))
+      rotateY(var(--ry))
+      rotateZ(var(--rz))
+      scale(var(--sc));
+  }
+  33% {
+    transform:
+      translate3d(calc(var(--tx) + 14px), calc(var(--ty) - 18px), var(--tz))
+      rotateX(calc(var(--rx) + 4deg))
+      rotateY(calc(var(--ry) - 6deg))
+      rotateZ(calc(var(--rz) + 2deg))
+      scale(var(--sc));
+  }
+  66% {
+    transform:
+      translate3d(calc(var(--tx) - 10px), calc(var(--ty) + 12px), var(--tz))
+      rotateX(calc(var(--rx) - 3deg))
+      rotateY(calc(var(--ry) + 5deg))
+      rotateZ(calc(var(--rz) - 1deg))
+      scale(var(--sc));
+  }
+}
+
+@keyframes float-b {
+  0%, 100% {
+    transform:
+      translate3d(var(--tx), var(--ty), var(--tz))
+      rotateX(var(--rx))
+      rotateY(var(--ry))
+      rotateZ(var(--rz))
+      scale(var(--sc));
+  }
+  25% {
+    transform:
+      translate3d(calc(var(--tx) - 16px), calc(var(--ty) + 10px), var(--tz))
+      rotateX(calc(var(--rx) - 5deg))
+      rotateY(calc(var(--ry) + 8deg))
+      rotateZ(calc(var(--rz) + 3deg))
+      scale(var(--sc));
+  }
+  75% {
+    transform:
+      translate3d(calc(var(--tx) + 12px), calc(var(--ty) - 14px), var(--tz))
+      rotateX(calc(var(--rx) + 6deg))
+      rotateY(calc(var(--ry) - 4deg))
+      rotateZ(calc(var(--rz) - 2deg))
+      scale(var(--sc));
+  }
+}
+
+@keyframes float-c {
+  0%, 100% {
+    transform:
+      translate3d(var(--tx), var(--ty), var(--tz))
+      rotateX(var(--rx))
+      rotateY(var(--ry))
+      rotateZ(var(--rz))
+      scale(var(--sc));
+  }
+  40% {
+    transform:
+      translate3d(calc(var(--tx) + 20px), calc(var(--ty) - 8px), var(--tz))
+      rotateX(calc(var(--rx) + 3deg))
+      rotateY(calc(var(--ry) - 7deg))
+      rotateZ(calc(var(--rz) + 1deg))
+      scale(var(--sc));
+  }
+  80% {
+    transform:
+      translate3d(calc(var(--tx) - 8px), calc(var(--ty) + 16px), var(--tz))
+      rotateX(calc(var(--rx) - 4deg))
+      rotateY(calc(var(--ry) + 6deg))
+      rotateZ(calc(var(--rz) - 3deg))
+      scale(var(--sc));
+  }
+}
+
+@keyframes float-hero {
+  0%, 100% {
+    transform:
+      translate3d(var(--tx), var(--ty), var(--tz))
+      rotateX(var(--rx))
+      rotateY(var(--ry))
+      rotateZ(var(--rz))
+      scale(var(--sc));
+  }
+  30% {
+    transform:
+      translate3d(calc(var(--tx) + 6px), calc(var(--ty) - 12px), 0px)
+      rotateX(2deg)
+      rotateY(-3deg)
+      rotateZ(0.5deg)
+      scale(1.01);
+  }
+  70% {
+    transform:
+      translate3d(calc(var(--tx) - 6px), calc(var(--ty) + 10px), 0px)
+      rotateX(-2deg)
+      rotateY(3deg)
+      rotateZ(-0.5deg)
+      scale(1.01);
+  }
+}
+
+/* ── Bottom Premium Footer Wrapper ── */
+.cdg-footer-wrapper {
+  width: 90%;
+  max-width: 480px;
+  margin: 0 auto 36px;
+  z-index: 10;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  pointer-events: auto;
+}
+
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .cdg-wrapper { min-height: 460px; }
+  .cdg-scene   { transform: scale(0.78); }
+}
+@media (max-width: 480px) {
+  .cdg-wrapper { min-height: 380px; }
+  .cdg-scene   { transform: scale(0.62); }
+}

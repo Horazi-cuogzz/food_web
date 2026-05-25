@@ -1,0 +1,48 @@
+/* SearchBar */
+.sb-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.sb-icon {
+  position: absolute;
+  left: 14px;
+  color: #94a3b8;
+  display: flex;
+  pointer-events: none;
+}
+.sb-icon svg { stroke: #94a3b8; }
+.sb-input {
+  width: 100%;
+  padding: 11px 44px 11px 42px;
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 12px;
+  color: #1a1d20;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+}
+.sb-input::placeholder { color: #94a3b8; }
+.sb-input:focus {
+  border-color: rgba(16,185,129,0.5);
+  box-shadow: 0 0 0 3px rgba(16,185,129,0.15);
+  background: #ffffff;
+}
+.sb-clear {
+  position: absolute;
+  right: 12px;
+  background: rgba(0,0,0,0.05);
+  border: 1px solid rgba(0,0,0,0.05);
+  border-radius: 6px;
+  width: 24px; height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #64748b;
+  transition: background 0.2s, color 0.2s;
+}
+.sb-clear:hover { background: rgba(0,0,0,0.1); color: #1a1d20; }
+.sb-clear svg { stroke: currentColor; }
